@@ -1,4 +1,4 @@
-{% set version = '1.0.1' %}
+{% set version = '1.1.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,30 +7,26 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: promises_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/promises_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/promises/promises_{{ version }}.tar.gz
-  sha256: c2dbc7734adf009377a41e570dfe0d82afb91335c9d0ca1ef464b9bdcca65558
+  sha256: c8ea0f3e3256cf3010439b3a6111966db419c3dcff9a561e73caf8bd65f38006
 
 build:
   merge_build_host: True  # [win]
-  number: 1001
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('m2w64_cxx') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
-    - {{posix}}sed  # [win]
-    - {{posix}}coreutils  # [win]
     - {{posix}}sed               # [win]
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
@@ -63,13 +59,35 @@ about:
     multiple tasks in the background while also attending to something else. Semantics
     are similar to 'JavaScript' promises, but with a syntax that is idiomatic R.
   license_family: MIT
+  license_file: 
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
     - halldc
+    - philip-khor
+
+# Package: promises
+# Type: Package
+# Title: Abstractions for Promise-Based Asynchronous Programming
+# Version: 1.1.0
+# Authors@R: c( person("Joe", "Cheng", email = "joe@rstudio.com", role = c("aut", "cre")), person("RStudio", role = c("cph", "fnd")) )
+# Description: Provides fundamental abstractions for doing asynchronous programming in R using promises. Asynchronous programming is useful for allowing a single R process to orchestrate multiple tasks in the background while also attending to something else. Semantics are similar to 'JavaScript' promises, but with a syntax that is idiomatic R.
+# License: MIT + file LICENSE
+# Imports: R6, Rcpp, later, rlang, stats, magrittr
+# Suggests: testthat, future, knitr, rmarkdown
+# LinkingTo: later, Rcpp
+# RoxygenNote: 6.1.1
+# Encoding: UTF-8
+# LazyData: true
+# VignetteBuilder: knitr
+# URL: https://rstudio.github.io/promises, https://github.com/rstudio/promises
+# BugReports: https://github.com/rstudio/promises/issues
+# NeedsCompilation: yes
+# Packaged: 2019-10-04 16:59:31 UTC; jcheng
+# Author: Joe Cheng [aut, cre], RStudio [cph, fnd]
+# Maintainer: Joe Cheng <joe@rstudio.com>
+# Repository: CRAN
+# Date/Publication: 2019-10-04 23:00:05 UTC
