@@ -3,6 +3,7 @@ About r-promises-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-promises-feedstock/blob/main/LICENSE.txt)
 
+
 About r-promises
 ----------------
 
@@ -11,6 +12,7 @@ Home: https://rstudio.github.io/promises, https://github.com/rstudio/promises
 Package license: MIT
 
 Summary: Provides fundamental abstractions for doing asynchronous programming in R using promises. Asynchronous programming is useful for allowing a single R process to orchestrate multiple tasks in the background while also attending to something else. Semantics are similar to 'JavaScript' promises, but with a syntax that is idiomatic R.
+
 About r-promises
 ----------------
 
