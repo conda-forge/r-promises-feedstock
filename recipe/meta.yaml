@@ -22,11 +22,12 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
-    - r-magrittr                 # [build_platform != target_platform]
+    - r-magrittr >1.5            # [build_platform != target_platform]
     - r-later                    # [build_platform != target_platform]
     - r-rlang                    # [build_platform != target_platform]
     - r-r6                       # [build_platform != target_platform]
     - r-rcpp                     # [build_platform != target_platform]
+    - r-fastmap >=1.1.0          # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('cxx') }}            # [not win]
@@ -40,16 +41,18 @@ requirements:
     - r-base
     - r-r6
     - r-rcpp
+    - r-fastmap >=1.1.0
     - r-later
-    - r-magrittr
+    - r-magrittr >=1.5
     - r-rlang
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
     - r-r6
     - r-rcpp
+    - r-fastmap >=1.1.0
     - r-later
-    - r-magrittr
+    - r-magrittr >=1.5
     - r-rlang
 
 test:
