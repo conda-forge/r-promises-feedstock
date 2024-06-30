@@ -1,6 +1,5 @@
 {% set version = "1.3.0" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-promises
@@ -13,8 +12,7 @@ source:
   sha256: f8209df3bab33340c1bc8c0d26caee2890fafb93129ff1423302abae5931fad3
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -29,7 +27,9 @@ requirements:
     - r-rcpp                     # [build_platform != target_platform]
     - r-fastmap >=1.1.0          # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
@@ -47,7 +47,6 @@ requirements:
     - r-rlang
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-r6
     - r-rcpp
     - r-fastmap >=1.1.0
