@@ -12,7 +12,8 @@ source:
   sha256: bb68fd4065cc072996aed416f0b2388f58738797a3a38024720c29d67164747d
 
 build:
-  number: 0
+  number: 1
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,45 +25,32 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
-    - r-r6                         # [build_platform != target_platform]
     - r-fastmap >=1.1.0            # [build_platform != target_platform]
     - r-later                      # [build_platform != target_platform]
     - r-lifecycle                  # [build_platform != target_platform]
     - r-magrittr >=1.5             # [build_platform != target_platform]
     - r-otel >=0.2.0               # [build_platform != target_platform]
+    - r-r6                         # [build_platform != target_platform]
     - r-rlang                      # [build_platform != target_platform]
-    - r-rcpp                       # [build_platform != target_platform]
-    - {{ compiler('c') }}          # [not win]
-    - {{ stdlib("c") }}            # [not win]
-    - {{ compiler('m2w64_c') }}    # [win]
-    - {{ stdlib("m2w64_c") }}      # [win]
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - {{ posix }}filesystem        # [win]
-    - {{ posix }}make
-    - {{ posix }}sed               # [win]
-    - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    - r-r6
     - r-fastmap >=1.1.0
     - r-later
     - r-lifecycle
     - r-magrittr >=1.5
     - r-otel >=0.2.0
+    - r-r6
     - r-rlang
-    - r-rcpp
   run:
     - r-base
-    - r-r6
     - r-fastmap >=1.1.0
     - r-later
     - r-lifecycle
     - r-magrittr >=1.5
     - r-otel >=0.2.0
+    - r-r6
     - r-rlang
-    - r-rcpp
 
 test:
   commands:
